@@ -43,7 +43,7 @@ namespace IISSMVVM.ViewModels
             if (!string.IsNullOrEmpty(args.Photo))
             {
                 Photo = new BitmapImage(new Uri(args.Photo));
-                new MainPage().ProcessAll();
+                new MainPage(true);
             }
         }
     }

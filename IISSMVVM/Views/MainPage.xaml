@@ -193,7 +193,8 @@
                      Grid.ColumnSpan="4"
                      Margin="0,0,20,0">
                     <TextBlock x:Name="tbName"
-                               Text="Jorge Perales Diaz"
+                               Foreground="Chartreuse"
+                               Text="{x:Bind TbName}"
                            Style="{StaticResource RightTextBoxStyle}"/>
                 </Viewbox>
                 <!--TEXTBLOCK Age-->

@@ -5,10 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using IISSMVVM.ViewModels;
 
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 using IISSMVVM.Models;
 using IISSMVVM.Services;
 using Microsoft.ProjectOxford.Face;
@@ -39,14 +41,29 @@ namespace IISSMVVM.Views
         public static int DetectionId;
         public static string nombreguardia;
         public static string sectorguardia;
+        private string imageName;
         public MainViewModel ViewModel { get; } = new MainViewModel();
+        private TextBlock _tbName;
 
+        public TextBlock TbName
+        {
+            get => _tbName;
+            set => _tbName = value;
+        }
         public MainPage()
         {
             InitializeComponent();
         }
+        public MainPage(bool x)
+        {
+            if (x)
+            {
+                ProcessAll();
+            }
+        }
         public async void ProcessAll()
         {
+            imageName = Guid.NewGuid() + ".jpg";
             using (FileStream stream = File.Open(file.Path, FileMode.Open))
             {
                 var requiredFaceAttributes = new[]
@@ -94,18 +111,18 @@ namespace IISSMVVM.Views
                                         //bgAmber.Visibility = Visibility.Collapsed;
                                         //bgNormal.Visibility = Visibility.Collapsed;
                                         //bgDanger.Visibility = Visibility.Visible;
-                                        tbDanger.Visibility = Visibility.Visible;
-                                        tbLocation.Visibility = Visibility.Visible;
-                                        tbCoordinates.Visibility = Visibility.Visible;
-                                        tbStreet.Visibility = Visibility.Visible;
-                                        tbTown.Visibility = Visibility.Visible;
-                                        tbCountry.Visibility = Visibility.Visible;
-                                        tbSubjectInfo.Visibility = Visibility.Visible;
-                                        tbName.Visibility = Visibility.Visible;
-                                        tbAge.Visibility = Visibility.Visible;
-                                        tbDescription.Visibility = Visibility.Visible;
+                                        //tbDanger.Visibility = Visibility.Visible;
+                                        //tbLocation.Visibility = Visibility.Visible;
+                                        //tbCoordinates.Visibility = Visibility.Visible;
+                                        //tbStreet.Visibility = Visibility.Visible;
+                                        //tbTown.Visibility = Visibility.Visible;
+                                        //tbCountry.Visibility = Visibility.Visible;
+                                        //tbSubjectInfo.Visibility = Visibility.Visible;
+                                        //tbName.Visibility = Visibility.Visible;
+                                        //tbAge.Visibility = Visibility.Visible;
+                                        //tbDescription.Visibility = Visibility.Visible;
                                         Debug.WriteLine("Usuario encontrado");
-                                        MyMap.Visibility = Visibility.Visible;
+                                        //MyMap.Visibility = Visibility.Visible;
                                         //we do a query to search all the information about the criminal that finally is shown on the UI.
                                         Query(facescomp[0].PersistedFaceId.ToString());
                                     });
@@ -172,6 +189,10 @@ namespace IISSMVVM.Views
                 //});
             }
         }
+        public static void idDataReadyM1()
+        {
+            new MainPage().ProcessAll();
+        }
         private async void Query(string searchId)
         {
             List<UsersUPT> lista = new List<UsersUPT>();
@@ -181,29 +202,34 @@ namespace IISSMVVM.Views
                 //In this part we do a linq query to get the correct information.
                 lista = await userTableObject.Where(userTableObj => userTableObj.PID == searchId).ToListAsync();
                 var obj = lista.First();
-                tbName.Text = $"Name: {obj.nombre}";
-                tbAge.Text = $"Age: {obj.edad}";
-                tbDescription.Text = $"Description: {obj.descripcion}";
-                tbDanger.Text = $"Priority: {obj.priority}";
-                if (obj.priority == "Low")
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    imgDanger1.Visibility = Visibility.Visible;
-                }
-                else if ((obj.priority == "Medium"))
-                {
-                    imgDanger2.Visibility = Visibility.Visible;
+                    _tbName = new TextBlock();
+                    //tbName.Text = $"Name: {obj.nombre}";
+                    _tbName.Text = $"Name: {obj.nombre}";
+                    //tbAge.Text = $"Age: {obj.edad}";
+                    //tbDescription.Text = $"Description: {obj.descripcion}";
+                    //tbDanger.Text = $"Priority: {obj.priority}";
+                    //if (obj.priority == "Low")
+                    //{
+                    //    imgDanger1.Visibility = Visibility.Visible;
+                    //}
+                    //else if ((obj.priority == "Medium"))
+                    //{
+                    //    imgDanger2.Visibility = Visibility.Visible;
 
-                }
-                else if (obj.priority == "High")
-                {
-                    imgDanger3.Visibility = Visibility.Visible;
+                    //}
+                    //else if (obj.priority == "High")
+                    //{
+                    //    imgDanger3.Visibility = Visibility.Visible;
 
-                }
-        //        sinth.StartSpeaking(media, "Nombre: ,    ,    ,    ,    ,    ,    , " + obj.nombre + ",   ,   ,   " +
-        //",   ,   ,Edad:   ,   ,   ,   ,   ," + obj.edad + " años,   ,   ,   ,   ,Descripcion:,   ,   ,   ,   ,   ," + obj.descripcion);
-        //        device = await devicesTable.Where(devicesTable => devicesTable.Nombre == GetDeviceInfo.DeviceName).ToListAsync();
-        //        var deviceObj = device.First();
-                UploadBlob(file.Name);
+                    //}
+                });
+                //        sinth.StartSpeaking(media, "Nombre: ,    ,    ,    ,    ,    ,    , " + obj.nombre + ",   ,   ,   " +
+                //",   ,   ,Edad:   ,   ,   ,   ,   ," + obj.edad + " años,   ,   ,   ,   ,Descripcion:,   ,   ,   ,   ,   ," + obj.descripcion);
+                //        device = await devicesTable.Where(devicesTable => devicesTable.Nombre == GetDeviceInfo.DeviceName).ToListAsync();
+                //        var deviceObj = device.First();
+                UploadBlob(imageName);
                 //enviar datos a la bd
                 try
                 {
@@ -211,7 +237,7 @@ namespace IISSMVVM.Views
                     {
                         IdC = DetectionId,
                         Hora = DateTime.Now.ToString(),
-                        Imagen = file.Name,
+                        Imagen = imageName,
                         //Latitud = latitude.ToString(),
                         //Longitud = longitude.ToString(),
                         NombreCriminal = obj.nombre,
