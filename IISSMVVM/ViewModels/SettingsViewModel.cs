@@ -9,7 +9,6 @@ using Windows.UI.Xaml;
 
 namespace IISSMVVM.ViewModels
 {
-    // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
     public class SettingsViewModel : Observable
     {
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;

@@ -25,21 +25,31 @@
         <Pivot Grid.Row="1">
             <PivotItem x:Uid="Account_PivotItem1">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <!--
-                    The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                    Place your content here.
-                    -->
-
+<TextBlock>item 1</TextBlock>
                 </Grid>
             </PivotItem>
             
             <PivotItem x:Uid="Account_PivotItem2">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <!--
-                    The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                    Place your content here.
-                    -->
+                    <TextBlock>item 2</TextBlock>
+                </Grid>
+            </PivotItem>
 
+            <PivotItem x:Uid="Account_PivotItem3">
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                    <TextBlock>item 3</TextBlock>
+                </Grid>
+            </PivotItem>
+
+            <PivotItem x:Uid="Account_PivotItem4">
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                    <TextBlock>item 4</TextBlock>
+                </Grid>
+            </PivotItem>
+
+            <PivotItem x:Uid="Account_PivotItem5">
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                    <TextBlock>item 5</TextBlock>
                 </Grid>
             </PivotItem>
         </Pivot>
