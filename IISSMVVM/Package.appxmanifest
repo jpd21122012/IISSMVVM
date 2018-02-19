@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio" IgnorableNamespaces="uap mp genTemplate">
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp genTemplate uap3">
   <Identity Name="323BD76D-ABB0-4B24-811B-9EFF5D2467B9" Publisher="CN=slipk" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="323BD76D-ABB0-4B24-811B-9EFF5D2467B9" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
@@ -36,8 +36,17 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="codeGeneration" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="privateNetworkClientServer" />
+    <uap:Capability Name="contacts" />
+    <uap:Capability Name="picturesLibrary" />
+    <uap3:Capability Name="remoteSystem" />
+    <uap:Capability Name="removableStorage" />
+    <uap:Capability Name="userAccountInformation" />
     <DeviceCapability Name="webcam" />
     <DeviceCapability Name="microphone" />
+    <DeviceCapability Name="location" />
   </Capabilities>
   <genTemplate:Metadata>
     <genTemplate:Item Name="generator" Value="Windows Template Studio" />

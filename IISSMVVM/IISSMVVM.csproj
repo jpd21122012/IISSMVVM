@@ -92,6 +92,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Mobile.Client">
+      <Version>4.0.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.6</Version>
     </PackageReference>
@@ -104,6 +107,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Services.Store.SDK">
       <Version>10.1705.16001</Version>
+    </PackageReference>
+    <PackageReference Include="Torutek.Microsoft.ProjectOxford.Face">
+      <Version>1.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="WindowsAzure.Storage">
+      <Version>9.0.0</Version>
     </PackageReference>
     <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0">
       <Name>Microsoft Engagement Framework</Name>
@@ -142,11 +151,19 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Helpers\ShareOperationExtensions.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Bills.cs" />
+    <Compile Include="Models\CardPayment.cs" />
+    <Compile Include="Models\Dispositivos.cs" />
+    <Compile Include="Models\Empresas.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\ShareSourceData.cs" />
     <Compile Include="Models\ShareSourceItem.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\FirstRunDisplayService.cs" />
+    <Compile Include="Services\GetDeviceInfo.cs" />
     <Compile Include="Services\HubNotificationsService.cs" />
     <Compile Include="Services\LiveTileService.cs" />
     <Compile Include="Services\LiveTileService.Samples.cs" />
@@ -215,6 +232,31 @@
     <Page Include="Controls\CameraControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\AccountDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\AccountPaymentDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\AccountSubscriptionDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\LoginDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\MainAccountDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Styles\Page.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -292,9 +334,29 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\AboutUs.png" />
+    <Content Include="Assets\Add.jpg" />
+    <Content Include="Assets\Animation\internet1.gif" />
+    <Content Include="Assets\Animation\nomatch1.gif" />
+    <Content Include="Assets\Animation\positive1.gif" />
+    <Content Include="Assets\Background\bg1.png" />
+    <Content Include="Assets\Background\datos1.png" />
+    <Content Include="Assets\Background\datos2.png" />
+    <Content Include="Assets\Background\datosIzq.png" />
+    <Content Include="Assets\Background\fondo.png" />
+    <Content Include="Assets\datosIzq.png" />
+    <Content Include="Assets\Desktop.png" />
+    <Content Include="Assets\Folder.png" />
+    <Content Include="Assets\Full.png" />
+    <Content Include="Assets\HoloLens.png" />
+    <Content Include="Assets\Home.png" />
+    <Content Include="Assets\info1.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\MasterCard.png" />
+    <Content Include="Assets\Mobile.png" />
+    <Content Include="Assets\pin.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-200.png" />
     <Content Include="Assets\SmallTile.scale-400.png" />
@@ -316,10 +378,35 @@
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Visa.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Resources\bg.png" />
+    <Content Include="Resources\bgAmber.png" />
+    <Content Include="Resources\bgDanger.png" />
+    <Content Include="Resources\caution.gif" />
+    <Content Include="Resources\caution1.gif" />
+    <Content Include="Resources\gifOff.gif" />
+    <Content Include="Resources\gifOn.gif" />
+    <Content Include="Resources\glasses.gif" />
+    <Content Include="Resources\internet.gif" />
+    <Content Include="Resources\internet1.gif" />
+    <Content Include="Resources\loginDesktop.png" />
+    <Content Include="Resources\loginSmartPhone.png" />
+    <Content Include="Resources\logo.png" />
+    <Content Include="Resources\LogoActive.gif" />
+    <Content Include="Resources\lvl1.gif" />
+    <Content Include="Resources\lvl2.gif" />
+    <Content Include="Resources\lvl3.gif" />
+    <Content Include="Resources\noFaces.gif" />
+    <Content Include="Resources\noInternet.gif" />
+    <Content Include="Resources\ok.gif" />
+    <Content Include="Resources\ok1.gif" />
+    <Content Include="Resources\peligrosidadHigh.gif" />
+    <Content Include="Resources\peligrosidadLow.gif" />
+    <Content Include="Resources\peligrosidadMed.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

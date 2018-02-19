@@ -90,6 +90,7 @@ namespace IISSMVVM.ViewModels
                 {
                     _itemSelected = new RelayCommand<HamburgetMenuItemInvokedEventArgs>(ItemSelected);
                 }
+                _isPaneOpen = false;
 
                 return _itemSelected;
             }
@@ -164,11 +165,11 @@ namespace IISSMVVM.ViewModels
             // More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
             // Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
-            _primaryItems.Add(ShellNavigationItem.FromType<LoginPage>("Shell_Login".GetLocalized(), Symbol.Document));
-            _primaryItems.Add(ShellNavigationItem.FromType<MainPage>("Shell_Main".GetLocalized(), Symbol.Document));
-            _primaryItems.Add(ShellNavigationItem.FromType<AccountPage>("Shell_Account".GetLocalized(), Symbol.Document));
-            _primaryItems.Add(ShellNavigationItem.FromType<AboutPage>("Shell_About".GetLocalized(), Symbol.Document));
-            _primaryItems.Add(ShellNavigationItem.FromType<ExitPage>("Shell_Exit".GetLocalized(), Symbol.Document));
+            _primaryItems.Add(ShellNavigationItem.FromType<LoginPage>("Shell_Login".GetLocalized(), Symbol.People));
+            _primaryItems.Add(ShellNavigationItem.FromType<MainPage>("Shell_Main".GetLocalized(), Symbol.WebCam));
+            _primaryItems.Add(ShellNavigationItem.FromType<AccountPage>("Shell_Account".GetLocalized(), Symbol.Contact));
+            _primaryItems.Add(ShellNavigationItem.FromType<AboutPage>("Shell_About".GetLocalized(), Symbol.ContactInfo));
+            _primaryItems.Add(ShellNavigationItem.FromType<ExitPage>("Shell_Exit".GetLocalized(),Symbol.Clear));
             _secondaryItems.Add(ShellNavigationItem.FromType<SettingsPage>("Shell_Settings".GetLocalized(), Symbol.Setting));
         }
 
@@ -188,12 +189,16 @@ namespace IISSMVVM.ViewModels
             if (navigationItem == null)
             {
                 navigationItem = SecondaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
+                IsPaneOpen = false;
+
             }
 
             if (navigationItem != null)
             {
                 ChangeSelected(_lastSelectedItem, navigationItem);
                 _lastSelectedItem = navigationItem;
+                IsPaneOpen = false;
+
             }
         }
 

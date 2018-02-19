@@ -13,20 +13,23 @@
         Margin="{StaticResource MediumLeftRightMargin}">
 
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="Exit_Title"
-            Style="{StaticResource PageTitleStyle}" />
-
         <Grid 
-            Grid.Row="1" 
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
+            <Grid Background="Aquamarine">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="1" Grid.Row="1" FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Text="See you later!!!"></TextBlock>
+            </Grid>
         </Grid>
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>

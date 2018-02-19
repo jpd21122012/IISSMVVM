@@ -1,0 +1,74 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:IISSMVVM.Styles">
+    <Style TargetType="TextBlock" x:Key="TitleTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="FontStyle" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="Foreground" Value="Blue"></Setter>
+        <Setter Property="Text" Value="Payment Options"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="SubTitleTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+        <Setter Property="Margin" Value="0,20"></Setter>
+        <Setter Property="Text" Value="Credit and Debit Cards, PayPal, Bank Accounts and more."></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="OwnerInfoTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="12,10"></Setter>
+        <Setter Property="Text" Value="Owner Name:"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="CardInfoTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="12,0"></Setter>
+        <Setter Property="Text" Value="Card Information:"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="AddressInfoTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="12,0"></Setter>
+        <Setter Property="Text" Value="Billing Address:"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StreetInfoTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="12,0"></Setter>
+        <Setter Property="Text" Value="Street"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="NumberInfoTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="12,0"></Setter>
+        <Setter Property="Text" Value="House Number:"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StateTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="12,0"></Setter>
+        <Setter Property="Text" Value="State:"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="CityInfoTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="12,0"></Setter>
+        <Setter Property="Text" Value="City:"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="CodeInfoTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="12,0"></Setter>
+        <Setter Property="Text" Value="Zip Code:"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="CoutryInfoTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="12,0"></Setter>
+        <Setter Property="Text" Value="Country:"></Setter>
+    </Style>
+</ResourceDictionary>

@@ -3,53 +3,420 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="using:IISSMVVM.Models"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:fcu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
     xmlns:cu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
     mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/MainAccountDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Styles/AccountDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Styles/AccountPaymentDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Styles/AccountSubscriptionDictionary.xaml"></ResourceDictionary>
 
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="300" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Ellipse Grid.Column="0" Grid.Row="0" Style="{StaticResource EllipseStyle}" x:Name="CompanyEllipse">
+            <Ellipse.Fill>
+                <ImageBrush x:Name="ImgCompany"></ImageBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Button Grid.Column="0" Grid.Row="0" Height="290" Width="290" x:Name="btnImageButton" Click="BtnImageButton_OnClick">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/Add.jpg"/>
+            </Button.Background>
+        </Button>
+        <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource HelloTextblockStyle}"></TextBlock>
+        <FontIcon Grid.Column="0" Grid.Row="1" Style="{StaticResource FontIconAccountCompanyNameStyle}"></FontIcon>
+        <TextBlock Grid.Column="0" Grid.Row="1" x:Name="tbAccountCompanyName" Style="{StaticResource TextBlockAccountCompanyNameStyle}"></TextBlock>
+        <FontIcon Grid.Column="0" Grid.Row="1" Style="{StaticResource FontIconAccountCompanyEmailStyle}"></FontIcon>
+        <TextBlock Grid.Column="0" Grid.Row="1" x:Name="tbAccountCompanyEmail" Style="{StaticResource TextBlockAccountCompanyEmailStyle}"></TextBlock>
+        <FontIcon Grid.Column="0" Grid.Row="1" Style="{StaticResource FontIconAccountCompanyNumberStyle}"></FontIcon>
+        <TextBlock  Grid.Column="0" Grid.Row="1" x:Name="tbAccountCompanyNumber" Style="{StaticResource TextBlockAccountCompanyNumberStyle}"></TextBlock>
+        <FontIcon Grid.Column="0" Grid.Row="1" Style="{StaticResource FontIconAccountCompanyPaymentStyle}"></FontIcon>
+        <TextBlock Grid.Column="0" Grid.Row="1" x:Name="tbAccountCompanyPayment" Style="{StaticResource TextBlockAccountCompanyPaymentStyle}"></TextBlock>
+        <FontIcon Grid.Column="0" Grid.Row="1" Name="StateAccountViewFontIcon" Style="{StaticResource FontIconAccountCompanyStateStyle}"></FontIcon>
+        <TextBlock Grid.Column="0" Grid.Row="1" x:Name="tbAccountCompanyState" Style="{StaticResource TextBlockAccountCompanyStateStyle}"></TextBlock>
 
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="Account_Pivot"
-            Text="Navigation Item 1"
-            Style="{StaticResource PageTitleStyle}"
-            Margin="12,0,12,7"/>
-
-        <Pivot Grid.Row="1">
+        <Pivot Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <PivotItem x:Uid="Account_PivotItem1">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-<TextBlock>item 1</TextBlock>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="190"></ColumnDefinition>
+                        <ColumnDefinition Width="185"></ColumnDefinition>
+                        <ColumnDefinition Width="215"></ColumnDefinition>
+                        <ColumnDefinition Width="280"></ColumnDefinition>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource TextBlockDateStyle}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBlockProductStyle}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource TextBlockStateStyle}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource TextBlockTotalStyle}"/>
+
+                    <GridView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{x:Bind ObjBills}"
+                  Style="{StaticResource GridViewRecentlyPaymentsStyle}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapGrid Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Background="LightGreen">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Date}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding ProductName}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding State}"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding Total}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource TextBlockDeviceMapStyle}"/>
+                    <WebView x:Name="MyMap" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5"></WebView>
                 </Grid>
             </PivotItem>
-            
+
             <PivotItem x:Uid="Account_PivotItem2">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <TextBlock>item 2</TextBlock>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--<TextBlock Text="AccountPrivacyViewModel"></TextBlock>-->
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Width="440"  
+                       Text="Privacy Notice for the Protection of Personal Data" Margin="10,0,0,0"/>
+
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Width="Auto" Margin="10,0,0,0" >
+                <Run Text="Your data is protected, we won't share with any entities, we use it just for the Intelligent Identificator Security System."/>
+                <LineBreak/>
+                <Run/>
+                        </TextBlock>
+
+                        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Width="Auto" Margin="10,0,0,0"  
+                       Text="Terms and Conditions"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Width="Auto" Margin="10,0,0,0">
+                <Run Text="1.- The purpose of this Privacy Notice is to protect personal data for each one of the members that will use the security system with intelligent identification, through their legitimate treatment, controlled and informed, in order to guarantee your privacy, as well as your right to informative self-determination."/>
+                <LineBreak/>
+                <Run/>
+                <Run Text="2.- Personal Data is any information concerning an identified natural person or identifiable; The zone in charge of collecting the personal data is the registration area (process that could be done appropriately on the official website)."/>
+                <LineBreak/>
+                <Run/>
+                <Run Text="3.- By providing your personal information through an application on the website, and filling out the form correctly, you accept and you authorize the company EnigmaMx to use and process your data in an automated way personal information and information, which will be part of our database with the purpose of using them, in an enunciative way, but not limitative, to: identify yourself, locate you, communicate, contact you, send you information and / or goods, as well as to send them and / or transfer them to third parties, inside and outside the national territory, any means that the law allows to fulfill our social purposes."/>
+                <LineBreak/>
+                <Run/>
+                <Run Text="4.- The temporality of the handling of your personal data will be indefinite as of the date in which the proportions, being able to oppose the handling of them in any moment that you consider appropriate, with the limitations of Law; in case you request of opposition is appropriate, the company EnigmaMx will stop handling your personal data without any responsibility on our part."/>
+                <Run/>
+                        </TextBlock>
+                    </StackPanel>
+                    <Image Grid.Column="1" HorizontalAlignment="Left" Height="231" Margin="5,98,0,0" VerticalAlignment="Top" Width="auto" Source="ms-appx:///Assets/Folder.png"/>
                 </Grid>
             </PivotItem>
 
             <PivotItem x:Uid="Account_PivotItem3">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <TextBlock>item 3</TextBlock>
+                    <Viewbox>
+                        <TextBlock>
+                            <Run FontWeight="Bold" FontSize="24" Text="Security Notice"/>
+                            <LineBreak/>
+                            <Run FontWeight="Bold" FontSize="24"/>
+                            <LineBreak/>
+                            <Run Text="This notice addresses the collection, use and security of, and access to information that may be shared through your use of this system. This notice covers the following topics:"/>
+                            <LineBreak/>
+                            <Run Text="- Passwords"/>
+                            <LineBreak/>
+                            <Run Text="- Personal information"/>
+                            <LineBreak/>
+                            <Run Text="- Security in the Data"/>
+                            <LineBreak/>
+                            <Run/>
+                            <LineBreak/>
+                            <Run Text="Passwords"/>
+                            <LineBreak/>
+                            <Run Text="The password used by each company is encrypted using the MD5 algorithm, with this we guarantee that we can not access the system they use."/>
+                            <LineBreak/>
+                            <Run/>
+                            <LineBreak/>
+                            <Run Text="Personal Informatión"/>
+                            <LineBreak/>
+                            <Run Text="ISO 27018 is a standard employee in Azure services that guarantees its current and potential clients that their data will not be used for any purpose for which their consent is not expressly given."/>
+                            <LineBreak/>
+                            <Run/>
+                            <LineBreak/>
+                            <Run Text="Security in the Database"/>
+                            <LineBreak/>
+                            <Run Text="ISO 27001 is another standard used in Azure services that specifies the requirements necessary to establish, implement, maintain and improve an information security management system (ISMS)."/>
+                            <LineBreak/>
+                            <Run/>
+                        </TextBlock>
+                    </Viewbox>
                 </Grid>
             </PivotItem>
 
             <PivotItem x:Uid="Account_PivotItem4">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <TextBlock>item 4</TextBlock>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock Grid.Row="0" Style="{StaticResource SubTitleTextBlockStyle}" />
+                    <ListView ItemsSource="{x:Bind _paymentObservableCollection}" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:Name="SingleLineDataTemplate" x:DataType="data:Payment">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="300"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Viewbox>
+                                        <StackPanel>
+                                            <Image Source="{x:Bind Image}" Height="20" Width="20" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Bank Name:" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" Margin="12,0,0,0"/>
+                                            <TextBlock Text="{x:Bind BankName}" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" Margin="12,0,0,0"/>
+                                        </StackPanel>
+                                    </Viewbox>
+                                    <Viewbox Grid.Column="1">
+                                        <StackPanel>
+                                            <TextBlock Style="{StaticResource CardInfoTextBlockStyle}"/>
+                                            <TextBlock Style="{StaticResource OwnerInfoTextBlockStyle}"/>
+                                            <TextBlock Style="{StaticResource AddressInfoTextBlockStyle}"/>
+                                            <TextBlock Style="{StaticResource StreetInfoTextBlockStyle}"/>
+                                            <TextBlock Style="{StaticResource NumberInfoTextBlockStyle}"/>
+                                            <TextBlock Style="{StaticResource StateTextBlockStyle}"/>
+                                            <TextBlock Style="{StaticResource CityInfoTextBlockStyle}"/>
+                                            <TextBlock Style="{StaticResource CodeInfoTextBlockStyle}"/>
+                                            <TextBlock Style="{StaticResource CoutryInfoTextBlockStyle}"/>
+                                        </StackPanel>
+                                    </Viewbox>
+                                    <Viewbox Grid.Column="2" Visibility="Visible">
+                                        <StackPanel>
+                                            <TextBlock Text="" VerticalAlignment="Center" Margin="12,0,0,0" Height="30"/>
+                                            <TextBlock Text="{x:Bind CardHolderName}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                                            <TextBlock Text="" VerticalAlignment="Center" Margin="12,0,0,0" Height="20"/>
+                                            <TextBlock Text="{x:Bind StreetName}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                                            <TextBlock Text="{x:Bind HouseNumber}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                                            <TextBlock Text="{x:Bind State}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                                            <TextBlock Text="{x:Bind City}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                                            <TextBlock Text="{x:Bind ZipCode}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                                            <TextBlock Text="{x:Bind Country}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                                        </StackPanel>
+                                    </Viewbox>
+                                    <Viewbox Grid.Column="3">
+                                        <StackPanel>
+                                            <TextBlock Text="Card Number:" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" Margin="12,0,0,0"/>
+                                            <TextBlock Text="{x:Bind CardNumber}" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" Margin="12,0,0,0"/>
+                                            <TextBlock Text="Expiration:" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" Margin="12,0,0,0"/>
+                                            <TextBlock Text="{x:Bind ExpirationDate }" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" Margin="12,0,0,0"/>
+                                        </StackPanel>
+                                    </Viewbox>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </Grid>
             </PivotItem>
 
             <PivotItem x:Uid="Account_PivotItem5">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <TextBlock>item 5</TextBlock>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.Row="0" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="GridViewHeaders">
+                        <RelativePanel>
+                            <TextBlock Style="{StaticResource HeaderDateTextBlockStyle}" />
+                            <TextBlock Style="{StaticResource HeaderNameTextBlockStyle}"/>
+                            <TextBlock Style="{StaticResource HeaderProductTextBlockStyle}" />
+                            <TextBlock Style="{StaticResource HeaderExpirationTextBlockStyle}" />
+                        </RelativePanel>
+                    </Viewbox>
+                    <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Button x:Name="FullButton" Click="FullButton_OnClick" Style="{StaticResource FullPackButtonStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource FullPackTextBlockStyle}"></TextBlock>
+                                <Image
+                        Style="{StaticResource FullPackImageStyle}">
+                                </Image>
+                            </StackPanel>
+                        </Button>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Button x:Name="DesktopButton" Click="DesktopButton_OnClick" Style="{StaticResource DesktopButtonStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource DesktopTextBlockStyle}"></TextBlock>
+                                <Image
+                        Style="{StaticResource DesktopImageStyle}">
+                                </Image>
+                            </StackPanel>
+                        </Button>
+                    </Viewbox>
+                    <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Button x:Name="MobileButton" Click="MobileButton_OnClick" Style="{StaticResource MobileButtonStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource MobileTextBlockStyle}"></TextBlock>
+                                <Image
+                        Style="{StaticResource MobileImageStyle}">
+                                </Image>
+                            </StackPanel>
+                        </Button>
+                    </Viewbox>
+                    <Viewbox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Button x:Name="HololensButton" Click="HololensButton_OnClick" Style="{StaticResource HoloLensButtonStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource HoloLensTextBlockStyle}"></TextBlock>
+                                <Image
+                        Style="{StaticResource HoloLensImageStyle}">
+                                </Image>
+                            </StackPanel>
+                        </Button>
+                    </Viewbox>
+                    <Viewbox Grid.Row="0" Grid.Column="2" x:Name="FullViewBox" Visibility="Collapsed">
+                        <GridView ItemsSource="{x:Bind FullList}" Name="FullGridView" ItemClick="FullGridView_OnItemClick" SelectionChanged="FullGridView_OnSelectionChanged" IsItemClickEnabled="True" >
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapGrid Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="LightGreen">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="300"/>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Date}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding ProductName}"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding ExpirationDate}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </Viewbox>
+                    <Viewbox Grid.Row="0" Grid.Column="2" x:Name="DesktopViewBox" Visibility="Collapsed">
+                        <GridView ItemsSource="{x:Bind DesktopList}" Name="DesktopGridView" ItemClick="DesktopGridView_OnItemClick" SelectionChanged="DesktopGridView_OnSelectionChanged" IsItemClickEnabled="True" >
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapGrid Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="LightGreen">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="300"/>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Date}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding ProductName}"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding ExpirationDate}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </Viewbox>
+                    <Viewbox Grid.Row="0" Grid.Column="2" x:Name="MobileViewBox" Visibility="Collapsed">
+                        <GridView ItemsSource="{x:Bind MobileList}" Name="MobileGridView" ItemClick="MobileGridView_OnItemClick" SelectionChanged="MobileGridView_OnSelectionChanged" IsItemClickEnabled="True" >
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapGrid Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="LightGreen">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="300"/>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Date}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding ProductName}"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding ExpirationDate}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </Viewbox>
+                    <Viewbox Grid.Row="0" Grid.Column="2" x:Name="HololensViewBox" Visibility="Collapsed">
+                        <GridView ItemsSource="{x:Bind HololensList}" Name="HololensGridView" ItemClick="HololensGridView_OnItemClick" SelectionChanged="HololensGridView_OnSelectionChanged" IsItemClickEnabled="True" >
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapGrid Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="LightGreen">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="300"/>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Date}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding ProductName}"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding ExpirationDate}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </Viewbox>
+                    <Viewbox Grid.Row="3" Grid.Column="2">
+                        <StackPanel Background="Red">
+                            <TextBlock x:Name="ExpirationTextBlock" Style="{StaticResource ExpirationTextBlockStyle}"></TextBlock>
+                        </StackPanel>
+                    </Viewbox>
                 </Grid>
             </PivotItem>
         </Pivot>

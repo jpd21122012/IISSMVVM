@@ -5,12 +5,15 @@ using IISSMVVM.Services;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace IISSMVVM
 {
     public sealed partial class App : Application
     {
         private Lazy<ActivationService> _activationService;
+        public static MobileServiceClient MobileService = new MobileServiceClient("https://pruebjpd.azurewebsites.net");
+        public static MobileServiceClient MobileService1 = new MobileServiceClient("https://kiarasapp.azurewebsites.net");
 
         private ActivationService ActivationService
         {
