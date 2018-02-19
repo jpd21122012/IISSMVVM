@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,6 +21,10 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using IISSMVVM.ViewModels;
+using IISSMVVM.Views;
+using Microsoft.ProjectOxford.Face;
+using Microsoft.ProjectOxford.Face.Contract;
 
 namespace IISSMVVM.Controls
 {
@@ -176,7 +182,6 @@ namespace IISSMVVM.Controls
             using (var stream = new InMemoryRandomAccessStream())
             {
                 await _mediaCapture.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
-
                 var photoOrientation = _displayInformation
                     .ToSimpleOrientation(_deviceOrientation, _mirroringPreview)
                     .ToPhotoOrientation(_mirroringPreview);
@@ -282,11 +287,11 @@ namespace IISSMVVM.Controls
                 var decoder = await BitmapDecoder.CreateAsync(inputStream);
 
                 var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("photo.jpeg", CreationCollisionOption.GenerateUniqueName);
-
+                MainPage.file = file;
                 using (var outputStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {
                     var encoder = await BitmapEncoder.CreateForTranscodingAsync(outputStream, decoder);
-
+                    
                     var properties = new BitmapPropertySet { { "System.Photo.Orientation", new BitmapTypedValue(photoOrientation, PropertyType.UInt16) } };
 
                     await encoder.BitmapProperties.SetPropertiesAsync(properties);

@@ -68,8 +68,8 @@ namespace IISSMVVM.Views
                 await messageDialog.ShowAsync();
                 if (lista.Count == 1)
                 {
-                    //Frame.Navigate(typeof(MainPageView));
-                    //MainPageView.DetectionId = Convert.ToInt32(obj.IdC);
+                    Frame.Navigate(typeof(MainPage));
+                    MainPage.DetectionId = Convert.ToInt32(obj.IdC);
                 }
             }
             catch (Exception ex)
