@@ -16,13 +16,13 @@ namespace IISSMVVM.Services
         public async Task InitializeAsync()
         {
             // TODO WTS: Set your Hub Name
-            var hubName = string.Empty;
+            var hubName = "IISSMVVM";
 
             // TODO WTS: Set your DefaultListenSharedAccessSignature
-            var accessSignature = string.Empty;
+            var accessSignature = "Endpoint=sb://iissmvvm.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=nh+ztV+qtQwl6iG4N1kwb+uiGrULq6NWhPyEEppYCjc=";
 
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-
+            channel.PushNotificationReceived += Channel_PushNotificationReceived;
             var hub = new NotificationHub(hubName, accessSignature);
             var result = await hub.RegisterNativeAsync(channel.Uri);
             if (result.RegistrationId != null)
@@ -32,6 +32,15 @@ namespace IISSMVVM.Services
 
             // You can also send push notifications from Windows Developer Center targeting your app consumers
             // More details at https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers
+        }
+
+        private void Channel_PushNotificationReceived(PushNotificationChannel sender, PushNotificationReceivedEventArgs args)
+        {
+            //fragment the inner text to obtain the CompanyName and filter with that.
+            //if (args.ToastNotification != null && args.ToastNotification.Content.InnerText!="jpd21122012")
+            //{
+            //    return ;
+            //}
         }
 
         protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)

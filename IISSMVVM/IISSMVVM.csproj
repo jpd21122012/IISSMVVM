@@ -17,7 +17,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>IISSMVVM_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>IISSMVVM_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>1DDFCA2E52C69DECEA5EA43DF19BF4301F33D1E2</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -154,12 +155,14 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Bills.cs" />
     <Compile Include="Models\CardPayment.cs" />
+    <Compile Include="Models\Deteccion.cs" />
     <Compile Include="Models\Dispositivos.cs" />
     <Compile Include="Models\Empresas.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\ShareSourceData.cs" />
     <Compile Include="Models\ShareSourceItem.cs" />
+    <Compile Include="Models\UsersUPT.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\FirstRunDisplayService.cs" />
@@ -254,6 +257,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Styles\MainAccountDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\MainPageDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -382,6 +390,8 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <None Include="IISSMVVM_StoreKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Resources\bg.png" />
     <Content Include="Resources\bgAmber.png" />

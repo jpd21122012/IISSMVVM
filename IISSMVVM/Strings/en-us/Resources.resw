@@ -275,24 +275,20 @@
   </data>
   <data name="ShareTarget_ImagesTitle" xml:space="preserve">
     <value>Images shared with the application</value>
-    <comment>Page title for ShareTarget when images are shared</comment>
+    <comment>IISS</comment>
   </data>
   <data name="ShareTarget_WebLinkTitle" xml:space="preserve">
-    <value>Web link shared with the application</value>
+    <value>https://www.microsoft.com/store/apps/9N8TZCT2V4WS</value>
     <comment>Page title for ShareTarget when web link is shared</comment>
   </data>
   <data name="FirstRun_Body.Text" xml:space="preserve">
-    <value>Replace the content of this dialog with whatever content is appropriate to your app.
-You might want to explain key features or functionality.
-Don't feel restricted to just text. You can also include images and animations if you wish too.
+    <value>Hi!!! Greetings from Intelligent Identificator Security System.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Here you can navigate around the different integrated views like the Login, Recognizer, AboutUs, Account, Exit and Settings Page.
 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
-
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
-
-Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.</value>
+                We create this for you so...
+                Enjoy it!!!
+</value>
     <comment>First use prompt message body</comment>
   </data>
   <data name="FirstRun_Title.Text" xml:space="preserve">
@@ -313,8 +309,5 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
   <data name="AfterUpdate_Title.Text" xml:space="preserve">
     <value>What's new in this version</value>
     <comment>What's new prompt message title</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>gyv</value>
   </data>
 </root>

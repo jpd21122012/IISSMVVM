@@ -22,12 +22,12 @@ namespace IISSMVVM.Services
                         {
                             new AdaptiveText()
                             {
-                                Text = "Sample Toast Notification"
+                                Text = "Intelligent Identificator Security System"
                             },
 
                             new AdaptiveText()
                             {
-                                 Text = @"Click OK to see how activation from a toast notification can be handled in the ToastNotificationService."
+                                 Text = @"Welcome to IISS, now you will be able to interact with the System, please be careful to read the Users Guide for better performance."
                             }
                         }
                     }
@@ -53,7 +53,7 @@ namespace IISSMVVM.Services
             {
                 // TODO WTS: Set a unique identifier for this notification within the notification group. (optional)
                 // More details at https://docs.microsoft.com/en-gb/uwp/api/windows.ui.notifications.toastnotification#Windows_UI_Notifications_ToastNotification_Tag
-                Tag = "ToastTag"
+                Tag = "jpd21122012"
             };
 
             // And show the toast

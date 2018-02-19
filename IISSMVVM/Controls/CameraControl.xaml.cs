@@ -342,5 +342,14 @@ namespace IISSMVVM.Controls
                 ctrl.CleanAndInitialize();
             }
         }
+
+        private void Grid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void MyMap_OnLoaded(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

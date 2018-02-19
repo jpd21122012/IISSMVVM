@@ -13,17 +13,11 @@ namespace IISSMVVM.Services
         // More about Live Tiles Notifications at https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
         public void SampleUpdate()
         {
-            // These would be initialized with actual data
-            string from = "Jennifer Parker";
-            string subject = "Photos from our trip";
-            string body = "Check out these awesome photos I took while in New Zealand!";
-
             // Construct the tile content
             var content = new TileContent()
             {
                 Visual = new TileVisual()
                 {
-                    Arguments = "Jennifer Parker",
                     TileMedium = new TileBinding()
                     {
                         Content = new TileBindingContentAdaptive()
@@ -32,17 +26,15 @@ namespace IISSMVVM.Services
                             {
                                 new AdaptiveText()
                                 {
-                                    Text = from
+                                    Text = "Intelligent Identificator Security System",
+                                    HintStyle = AdaptiveTextStyle.Title,
+                                    HintAlign = AdaptiveTextAlign.Center
                                 },
                                 new AdaptiveText()
                                 {
-                                    Text = subject,
-                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                },
-                                new AdaptiveText()
-                                {
-                                    Text = body,
-                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                    Text = "Welcome!!!",
+                                    HintStyle = AdaptiveTextStyle.SubtitleSubtle,
+                                    HintAlign = AdaptiveTextAlign.Center
                                 }
                             }
                         }
@@ -56,18 +48,57 @@ namespace IISSMVVM.Services
                             {
                                 new AdaptiveText()
                                 {
-                                    Text = from,
-                                    HintStyle = AdaptiveTextStyle.Subtitle
+                                    Text = "Intelligent Identificator Security System",
+                                    HintStyle = AdaptiveTextStyle.Title,
+                                    HintAlign = AdaptiveTextAlign.Center
                                 },
                                 new AdaptiveText()
                                 {
-                                    Text = subject,
-                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                    Text = "Welcome!!!",
+                                    HintStyle = AdaptiveTextStyle.SubtitleSubtle,
+                                    HintAlign = AdaptiveTextAlign.Center
+                                }
+                            }
+                        }
+                    },
+                    TileLarge = new TileBinding()
+                    {
+                        Content = new TileBindingContentAdaptive()
+                        {
+                            TextStacking = TileTextStacking.Center,
+                            Children =
+                            {
+                                new AdaptiveGroup()
+                                {
+                                    Children =
+                                    {
+                                        new AdaptiveSubgroup() { HintWeight = 1 },
+                                        new AdaptiveSubgroup()
+                                        {
+                                            HintWeight = 2,
+                                            Children =
+                                            {
+                                                new AdaptiveImage()
+                                                {
+                                                    Source = "Assets/StoreLogo.scale-400.png",
+                                                    HintCrop = AdaptiveImageCrop.Circle
+                                                }
+                                            }
+                                        },
+                                        new AdaptiveSubgroup() { HintWeight = 1 }
+                                    }
                                 },
                                 new AdaptiveText()
                                 {
-                                    Text = body,
-                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                    Text = "Intelligent Identificator Security System",
+                                    HintStyle = AdaptiveTextStyle.Title,
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "Welcome!!!",
+                                    HintStyle = AdaptiveTextStyle.SubtitleSubtle,
+                                    HintAlign = AdaptiveTextAlign.Center
                                 }
                             }
                         }

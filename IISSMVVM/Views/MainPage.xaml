@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     Style="{StaticResource PageStyle}"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
@@ -11,29 +12,32 @@
     xmlns:fcu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
     xmlns:cu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
     mc:Ignorable="d">
-    
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/MainPageDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
 
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="Main_Title"
-            Style="{StaticResource PageTitleStyle}" />
 
-        <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <controls:CameraControl x:Uid="MainPage_CameraControl">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="PhotoTaken">
                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.PhotoTakenCommand}"/>
                     </ic:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
-            </controls:CameraControl>           
+            </controls:CameraControl>
+
             <Image
                 Height="70"
                 Width="70"

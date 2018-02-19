@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp genTemplate uap3">
-  <Identity Name="323BD76D-ABB0-4B24-811B-9EFF5D2467B9" Publisher="CN=slipk" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="323BD76D-ABB0-4B24-811B-9EFF5D2467B9" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="57029JorgePeralesDiaz.IISSMVVM" Publisher="CN=BFD8FBFC-9C71-49F5-9C90-C9F77A0801C6" Version="1.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="ae6fdaf9-9e4b-41a5-a7ca-963db26965ab" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>IISSMVVM</DisplayName>
-    <PublisherDisplayName>slipk</PublisherDisplayName>
+    <PublisherDisplayName>Jorge Perales Diaz</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

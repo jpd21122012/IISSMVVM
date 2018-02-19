@@ -12,6 +12,7 @@ namespace IISSMVVM.Services
     {
         public void ShowToastNotification(ToastNotification toastNotification)
         {
+            toastNotification.Tag = "jpd21122012";
             ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
         }
 

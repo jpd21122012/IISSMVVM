@@ -1,4 +1,5 @@
-﻿using IISSMVVM.ViewModels;
+﻿using Windows.UI.Xaml;
+using IISSMVVM.ViewModels;
 
 using Windows.UI.Xaml.Controls;
 
@@ -11,6 +12,10 @@ namespace IISSMVVM.Views
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void MyMap_OnLoaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
